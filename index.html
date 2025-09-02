@@ -139,7 +139,7 @@
             border-right: 3px solid var(--neon-green);
             white-space: nowrap;
             animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
-            max-width: fit-content;
+            max-width: 100%;
         }
         
         @keyframes typing {
@@ -185,6 +185,8 @@
             list-style: none;
             display: flex;
             gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         nav a {
