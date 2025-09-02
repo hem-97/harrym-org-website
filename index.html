@@ -3,291 +3,689 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harry Morgan</title>
+    <meta name="description" content="Harry Morgan - Builder, VC, Hardware/Robotics">
+    <meta name="author" content="Harry Morgan">
+    
+    <title>Harry Morgan | Builder → VC → Builder</title>
+    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;800;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        :root {
+            --neon-green: #00ff88;
+            --cyber-blue: #00ffff;
+            --hot-pink: #ff0080;
+            --deep-purple: #8000ff;
+            --warning-yellow: #ffff00;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+        }
+        
+        /* Cursor follower - subtle shadow effect */
+        .cursor-follower {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            mix-blend-mode: screen;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #fff;
-            color: #333;
-            line-height: 1.6;
-            font-size: 16px;
-            letter-spacing: -0.01em;
+            font-family: 'Space Mono', monospace;
+            background: var(--dark-bg);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            position: relative;
         }
-
+        
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                var(--dark-bg) 0%, 
+                #0a0a1a 25%, 
+                #1a0a1a 50%, 
+                #0a1a1a 75%, 
+                var(--dark-bg) 100%);
+            animation: gradientShift 10s ease infinite;
+            z-index: -2;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Particle effect */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        /* Main container */
         .container {
-            max-width: 680px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
         }
-
-        h1 {
-            font-size: 42px;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-bottom: 40px;
-            color: #000;
-        }
-
-        nav {
-            margin-bottom: 40px;
+        
+        /* Hero section */
+        .hero {
+            min-height: 100vh;
             display: flex;
-            gap: 40px;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
         }
-
+        
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(60px, 12vw, 140px);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--neon-green), var(--cyber-blue), var(--hot-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out, gradientMove 3s ease-in-out infinite;
+            position: relative;
+        }
+        
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            font-size: 18px;
+            color: var(--neon-green);
+            margin-bottom: 30px;
+            font-family: 'Space Mono', monospace;
+            overflow: hidden;
+            border-right: 3px solid var(--neon-green);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+            max-width: fit-content;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--neon-green); }
+        }
+        
+        /* ASCII art */
+        .ascii-art {
+            font-size: 10px;
+            line-height: 1;
+            color: var(--cyber-blue);
+            opacity: 0.3;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: monospace;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
         nav a {
-            color: #999;
+            color: white;
             text-decoration: none;
-            font-size: 16px;
-            transition: color 0.2s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            transition: all 0.3s ease;
         }
-
-        nav a:hover {
-            color: #000;
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: width 0.3s ease;
         }
-
-        .intro {
-            margin-bottom: 40px;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #333;
+        
+        nav a:hover::after {
+            width: 100%;
         }
-
-        .intro a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .intro a:hover {
-            text-decoration: underline;
-        }
-
-        .bio {
-            margin-bottom: 40px;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #333;
-        }
-
-        .bio a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .bio a:hover {
-            text-decoration: underline;
-        }
-
+        
+        /* Sections with parallax */
         section {
-            margin-bottom: 40px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInSection 1s ease-out forwards;
+            animation-delay: 0.5s;
         }
-
-        section p {
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 16px;
+        
+        @keyframes fadeInSection {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
+        
+        /* Alternating sections */
+        section:nth-child(even) {
+            background: var(--darker-bg);
+            margin-left: -40px;
+            margin-right: -40px;
+            padding: 60px 40px;
+            position: relative;
+        }
+        
+        section:nth-child(even)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--neon-green), var(--cyber-blue));
+        }
+        
+        /* Section headers with rotation */
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--hot-pink);
+            transform: rotate(-90deg);
+            position: absolute;
+            left: -60px;
+            top: 100px;
+            transform-origin: center;
+        }
+        
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--cyber-blue);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+        
+        /* Lists with hover effects */
         ul {
             list-style: none;
-            margin-left: 0;
         }
-
+        
         li {
-            margin-bottom: 8px;
-            font-size: 16px;
-            color: #333;
-            display: flex;
-            align-items: baseline;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            transition: all 0.3s ease;
         }
-
-        li:before {
-            content: "·";
-            margin-right: 12px;
-            color: #999;
+        
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+            transition: all 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(10px);
+            color: var(--neon-green);
+        }
+        
+        li:hover::before {
+            content: '▸▸';
+            color: var(--hot-pink);
+        }
+        
+        /* Links with multiple effects */
+        a {
+            color: var(--cyber-blue);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        /* Counter animation */
+        .counter {
+            font-size: 48px;
             font-weight: bold;
+            color: var(--neon-green);
+            font-family: 'Space Mono', monospace;
         }
-
-        li a {
-            color: #0066cc;
-            text-decoration: none;
+        
+        /* Company cards */
+        .company-card {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,255,0.1));
+            border: 1px solid rgba(0,255,136,0.3);
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-
-        li a:hover {
-            text-decoration: underline;
+        
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
         }
-
-        .investments {
-            margin-bottom: 40px;
+        
+        .company-card:hover::before {
+            left: 100%;
         }
-
-        .investments p {
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 16px;
+        
+        .company-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0,255,136,0.3);
         }
-
-        .investments li {
-            margin-bottom: 8px;
+        
+        /* Bio section with special styling */
+        .bio {
+            font-size: 18px;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #e0e0e0, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 60px;
         }
-
-        .company {
-            display: inline;
+        
+        /* Floating shapes */
+        .floating-shape {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: -1;
         }
-
-        .company-desc {
-            color: #666;
-            margin-left: 4px;
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            top: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
         }
-
-        .likes li,
-        .books li {
-            color: #333;
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--hot-pink);
+            top: 60%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite reverse;
         }
-
-        .contact {
-            margin-top: 60px;
-            font-size: 16px;
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
         }
-
-        .contact a {
-            color: #0066cc;
-            text-decoration: none;
+        
+        /* Easter egg */
+        .easter-egg {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
         }
-
-        .contact a:hover {
-            text-decoration: underline;
+        
+        .easter-egg.show {
+            opacity: 1;
+            animation: bounce 0.5s ease;
         }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
 
-        @media (max-width: 640px) {
+        
+        /* Matrix rain effect container - removed */
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 60px;
+            }
+            
             .container {
                 padding: 40px 20px;
             }
             
-            h1 {
-                font-size: 32px;
-            }
-
             nav {
-                gap: 24px;
-                flex-wrap: wrap;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .ascii-art {
+                display: none;
+            }
+            
+            .section-label {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Cursor follower shadow -->
+    <div class="cursor-follower"></div>
+    
+    <!-- Floating shapes -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#work">WORK</a></li>
+            <li><a href="#invest">INVEST</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </nav>
+    
+
+    
+    <!-- Easter egg emoji -->
+    <div class="easter-egg" id="easter-egg">🤖</div>
+    
     <div class="container">
-        <h1>Harry Morgan</h1>
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Harry Morgan</h1>
+            <div class="typewriter">Builder → VC → Builder. Currently making robots at <a href="http://harry-m.org/" style="color: var(--neon-green); text-decoration: none;">Hanns</a>.</div>
+        </div>
         
-        <nav>
-            <a href="#about">About</a>
-            <a href="#investing">Investing</a>
-            <a href="#writings">Writings</a>
-            <a href="#interests">Interests</a>
-        </nav>
-
-        <div class="intro">
-            Builder → VC → builder. My job is to enable make-to-order fashion with robotics at <a href="#">Hanns</a>. Based in London.
-        </div>
-
-        <div class="bio">
-            >10yrs in hardware/startups. Built the world's first robotic cat to always land on its feet. Scaled Rethink Energy to >15k subscribers. Raised >$30m in non-dilutive funding for startups. Cofounded The Cool Can Company and Social Mobility Ventures. 3yrs investing at 7pc.vc. (<a href="#">LinkedIn</a>)
-        </div>
-
-        <section id="writings">
-            <p>What I write:</p>
-            <ul>
-                <li><a href="#">The End of Work – Why UBI is critical for an era of physical intelligence</a></li>
-                <li><a href="#">Smart Planet 3.0 – Part 1</a> and <a href="#">Part 2</a></li>
-                <li><a href="#">The Future of Compute – Part 1</a> and <a href="#">Part 2</a></li>
-                <li><a href="#">The UK must reassess what it really means to be a deeptech start up</a></li>
-                <li><a href="#">The 7percent Manifesto</a></li>
-                <li><a href="#">Smart Energy Systems: Connectivity for a zero‑emissions future</a></li>
-                <li><a href="#">Time to call bullshit on Carbon Capture</a></li>
-            </ul>
+        <!-- Bio Section -->
+        <section id="about">
+            <div class="section-label">ABOUT</div>
+            <p class="bio">
+                <span class="counter" data-target="10">0</span>+ years in hardware/startups. 
+                Built the world's first robotic cat to always land on its feet. 
+                Scaled <a href="https://rethinkresearch.biz/" target="_blank" style="color: var(--cyber-blue);">Rethink Energy</a> to <span class="counter" data-target="15000">0</span>+ subscribers. 
+                Raised $<span class="counter" data-target="30">0</span>M+ in non-dilutive funding for startups. 
+                Cofounded <a href="https://www.linkedin.com/company/thecoolcancompany/" target="_blank" style="color: var(--cyber-blue);">The Cool Can Company</a> and <a href="https://www.socialmobility.ventures" target="_blank" style="color: var(--cyber-blue);">Social Mobility Ventures</a>. 
+                3yrs investing at <a href="https://www.7pc.vc/" target="_blank" style="color: var(--cyber-blue);">7pc.vc</a>.
+            </p>
         </section>
-
-        <section id="investing" class="investments">
-            <p>I wrote $100-500k checks into >50 pre-seed startups and funds well ahead of VCs, e.g.:</p>
+        
+        <!-- Writing Section -->
+        <section id="work">
+            <div class="section-label">WRITING</div>
+            <h2>Thoughts_on_tech</h2>
             <ul>
-                <li>
-                    <span class="company"><a href="#">Nu Quantum</a></span>
-                    <span class="company-desc">(Quantum networks)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">Kaikaku</a></span>
-                    <span class="company-desc">(Robotic restaurants)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">Greenjets</a></span>
-                    <span class="company-desc">(Quiet/electric aviation)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">Tipple</a></span>
-                    <span class="company-desc">(D2C alcohol infrastructure)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">OSCP</a></span>
-                    <span class="company-desc">(Photonic gyroscope)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">Chemastery</a></span>
-                    <span class="company-desc">(Robotic chemistry)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">BioOrbit</a></span>
-                    <span class="company-desc">(Space drugs)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">Frontier Audio</a></span>
-                    <span class="company-desc">(Ear computer)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">GatlingX</a></span>
-                    <span class="company-desc">(AI hackbot)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">AeroVolt</a></span>
-                    <span class="company-desc">(Electric aviation infra.)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">Paddington</a></span>
-                    <span class="company-desc">(Embodied AI)</span>
-                </li>
-                <li>
-                    <span class="company"><a href="#">Stealth</a></span>
-                    <span class="company-desc">(Nuclear fusion)</span>
-                </li>
+                <li><a href="https://substack.com/@workingback" target="_blank">The End of Work – Why UBI is critical for an era of physical intelligence</a></li>
+                <li><a href="https://www.7pc.vc/blog/smart-planet-part-1-two-booms-two-busts-two-decades" target="_blank">Smart Planet 3.0 – Part 1</a> / <a href="https://www.7pc.vc/blog/smart-planet-part-1-two-booms-two-busts-two-decades" target="_blank">Part 2</a></li>
+                <li><a href="https://www.7pc.vc/blog/beyond-moore-part-1-the-future-of-compute" target="_blank">The Future of Compute – Part 1</a> / <a href="https://www.7pc.vc/blog/beyond-moore-part-2-robots-in-disguise" target="_blank">Part 2</a></li>
+                <li><a href="https://www.techuk.org/resource/the-uk-must-reassess-what-it-really-means-to-be-a-deeptech-start-up.html" target="_blank">The UK must reassess what it really means to be a deeptech start up</a></li>
+                <li><a href="https://www.7pc.vc/7percent-manifesto" target="_blank">The 7percent Manifesto</a></li>
+                <li><a href="https://www.gsma.com/solutions-and-impact/connectivity-for-good/external-affairs/gsma_resources/smart-energy-systems-connectivity-for-a-zero%E2%80%91emissions-future/" target="_blank">Smart Energy Systems: Connectivity for a zero‑emissions future</a></li>
+                <li><a href="https://rethinkresearch.biz/#:~:text=Not%20only%20does%20carbon%20capture,the%20technology%20isn't%20fitted." target="_blank">Time to call bullshit on Carbon Capture</a></li>
             </ul>
+            <p style="margin-top: 20px;">More on <a href="https://substack.com/@workingback" target="_blank" style="color: var(--neon-green);">my Substack</a></p>
         </section>
-
-        <section id="interests" class="likes">
-            <p>I like:</p>
+        
+        <!-- Media Section -->
+        <section id="media">
+            <h2>Recent_media</h2>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border: 1px solid var(--cyber-blue); margin-top: 20px;">
+                <iframe 
+                    src="https://www.youtube.com/embed/LzlhUWxe1Wo" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="margin-top: 15px; color: var(--cyber-blue); font-size: 14px;">Featured on Sky News discussing robotics and the future of work</p>
+        </section>
+        
+        <!-- Investing Section -->
+        <section id="invest">
+            <div class="section-label">INVEST</div>
+            <h2>Portfolio::pre_seed</h2>
+            <p style="margin-bottom: 30px; color: var(--neon-green);">
+                Written $<span class="counter" data-target="100">0</span>-<span class="counter" data-target="500">0</span>k 
+                checks into <span class="counter" data-target="30">0</span>+ startups
+            </p>
+            
+            <div class="company-card">
+                <a href="https://nu-quantum.com/" target="_blank">Nu Quantum</a> <span style="color: var(--cyber-blue);">// Quantum networks</span>
+            </div>
+            <div class="company-card">
+                <a href="https://www.kaikaku.ai/" target="_blank">Kaikaku</a> <span style="color: var(--cyber-blue);">// Robotic restaurants</span>
+            </div>
+            <div class="company-card">
+                <a href="https://greenjets.com/" target="_blank">Greenjets</a> <span style="color: var(--cyber-blue);">// Quiet/electric aviation</span>
+            </div>
+            <div class="company-card">
+                <a href="https://heytipple.com/" target="_blank">Tipple</a> <span style="color: var(--cyber-blue);">// D2C alcohol infrastructure</span>
+            </div>
+            <div class="company-card">
+                <a href="https://www.oscp.com/" target="_blank">OSCP</a> <span style="color: var(--cyber-blue);">// Photonic gyroscope</span>
+            </div>
+            <div class="company-card">
+                <a href="https://www.chemastery.com/" target="_blank">Chemastery</a> <span style="color: var(--cyber-blue);">// Robotic chemistry</span>
+            </div>
+            <div class="company-card">
+                <a href="https://www.bioorbit.space/" target="_blank">BioOrbit</a> <span style="color: var(--cyber-blue);">// Space drugs</span>
+            </div>
+            <div class="company-card">
+                <a href="https://www.frontieraudio.com/" target="_blank">Frontier Audio</a> <span style="color: var(--cyber-blue);">// Ear computer</span>
+            </div>
+            <div class="company-card">
+                <a href="https://www.linkedin.com/in/eito-miyamura-157305121/" target="_blank">Edison Watch</a> <span style="color: var(--cyber-blue);">// AI security (fka GatlingX)</span>
+            </div>
+            <div class="company-card">
+                <a href="https://aerovolt.co.uk/home/" target="_blank">AeroVolt</a> <span style="color: var(--cyber-blue);">// Electric aviation infra</span>
+            </div>
+            <div class="company-card">
+                <a href="https://paddington-robotics.com/" target="_blank">Paddington</a> <span style="color: var(--cyber-blue);">// Embodied AI</span>
+            </div>
+            <div class="company-card">
+                <span style="color: var(--hot-pink);">[CLASSIFIED]</span> <span style="color: var(--cyber-blue);">// Nuclear fusion</span>
+            </div>
+        </section>
+        
+        <!-- Interests Section -->
+        <section>
+            <h2>Personal.interests[]</h2>
             <ul>
-                <li>Sports with boards</li>
-                <li>Looking upstream</li>
-                <li>The Danish gambit</li>
-                <li>Deep frying</li>
+                <li>Sports with boards 🏄</li>
+                <li>Looking upstream 🔍</li>
+                <li>The Danish gambit ♟️</li>
+                <li>Deep frying 🍟</li>
             </ul>
-        </section>
-
-        <section class="books">
-            <p>Book recommendations:</p>
+            
+            <h2 style="margin-top: 40px;">Reading_list</h2>
             <ul>
                 <li>Insomniac City</li>
                 <li>Humankind</li>
                 <li>A Fools Alphabet</li>
             </ul>
         </section>
-
-        <div class="contact">
-            Reach me at <a href="mailto:hm@harry-m.org">hm@harry-m.org</a>
-        </div>
+        
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get_in_touch</h2>
+            <p style="font-size: 20px;">
+                <a href="mailto:hm@harry-m.org" style="color: var(--neon-green);">hm@harry-m.org</a>
+            </p>
+            <p style="margin-top: 20px; color: var(--cyber-blue);">
+                <a href="https://www.linkedin.com/in/harryemorgan/" target="_blank">LinkedIn</a> | 
+                <a href="https://x.com/harryemorgan" target="_blank">Twitter</a> | 
+                <a href="https://github.com/hem-97" target="_blank">GitHub</a>
+            </p>
+        </section>
     </div>
+    
+    <script>
+        // Cursor follower shadow
+        const follower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            setTimeout(() => {
+                follower.style.left = e.clientX - 40 + 'px';
+                follower.style.top = e.clientY - 40 + 'px';
+            }, 100);
+        });
+        
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        counters.forEach(counter => {
+            const animate = () => {
+                const value = +counter.getAttribute('data-target');
+                const data = +counter.innerText;
+                const time = value / speed;
+                
+                if(data < value) {
+                    counter.innerText = Math.ceil(data + time);
+                    setTimeout(animate, 1);
+                } else {
+                    counter.innerText = value.toLocaleString();
+                }
+            }
+            
+            // Start animation when in viewport
+            const observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    animate();
+                }
+            });
+            
+            observer.observe(counter);
+        });
+        
+        // Parallax scrolling
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+        
+        // Konami code easter egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        document.addEventListener('keydown', (e) => {
+            if(e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if(konamiIndex === konamiCode.length) {
+                    activateEasterEgg();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+        
+        function activateEasterEgg() {
+            const egg = document.getElementById('easter-egg');
+            egg.classList.add('show');
+            document.body.style.animation = 'glitch 0.3s 5';
+            
+            setTimeout(() => {
+                egg.classList.remove('show');
+                document.body.style.animation = '';
+            }, 3000);
+        }
+        
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
