@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Morgan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+            color: #000;
+        }
+
+        nav {
+            margin-bottom: 40px;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #000;
+        }
+
+        .intro {
+            margin-bottom: 40px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .intro a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .intro a:hover {
+            text-decoration: underline;
+        }
+
+        .bio {
+            margin-bottom: 40px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .bio a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .bio a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section p {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #333;
+            display: flex;
+            align-items: baseline;
+        }
+
+        li:before {
+            content: "·";
+            margin-right: 12px;
+            color: #999;
+            font-weight: bold;
+        }
+
+        li a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            text-decoration: underline;
+        }
+
+        .investments {
+            margin-bottom: 40px;
+        }
+
+        .investments p {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .investments li {
+            margin-bottom: 8px;
+        }
+
+        .company {
+            display: inline;
+        }
+
+        .company-desc {
+            color: #666;
+            margin-left: 4px;
+        }
+
+        .likes li,
+        .books li {
+            color: #333;
+        }
+
+        .contact {
+            margin-top: 60px;
+            font-size: 16px;
+        }
+
+        .contact a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Harry Morgan</h1>
+        
+        <nav>
+            <a href="#about">About</a>
+            <a href="#investing">Investing</a>
+            <a href="#writings">Writings</a>
+            <a href="#interests">Interests</a>
+        </nav>
+
+        <div class="intro">
+            Builder → VC → builder. My job is to enable make-to-order fashion with robotics at <a href="#">Hanns</a>. Based in London.
+        </div>
+
+        <div class="bio">
+            >10yrs in hardware/startups. Built the world's first robotic cat to always land on its feet. Scaled Rethink Energy to >15k subscribers. Raised >$30m in non-dilutive funding for startups. Cofounded The Cool Can Company and Social Mobility Ventures. 3yrs investing at 7pc.vc. (<a href="#">LinkedIn</a>)
+        </div>
+
+        <section id="writings">
+            <p>What I write:</p>
+            <ul>
+                <li><a href="#">The End of Work – Why UBI is critical for an era of physical intelligence</a></li>
+                <li><a href="#">Smart Planet 3.0 – Part 1</a> and <a href="#">Part 2</a></li>
+                <li><a href="#">The Future of Compute – Part 1</a> and <a href="#">Part 2</a></li>
+                <li><a href="#">The UK must reassess what it really means to be a deeptech start up</a></li>
+                <li><a href="#">The 7percent Manifesto</a></li>
+                <li><a href="#">Smart Energy Systems: Connectivity for a zero‑emissions future</a></li>
+                <li><a href="#">Time to call bullshit on Carbon Capture</a></li>
+            </ul>
+        </section>
+
+        <section id="investing" class="investments">
+            <p>I wrote $100-500k checks into >50 pre-seed startups and funds well ahead of VCs, e.g.:</p>
+            <ul>
+                <li>
+                    <span class="company"><a href="#">Nu Quantum</a></span>
+                    <span class="company-desc">(Quantum networks)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">Kaikaku</a></span>
+                    <span class="company-desc">(Robotic restaurants)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">Greenjets</a></span>
+                    <span class="company-desc">(Quiet/electric aviation)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">Tipple</a></span>
+                    <span class="company-desc">(D2C alcohol infrastructure)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">OSCP</a></span>
+                    <span class="company-desc">(Photonic gyroscope)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">Chemastery</a></span>
+                    <span class="company-desc">(Robotic chemistry)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">BioOrbit</a></span>
+                    <span class="company-desc">(Space drugs)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">Frontier Audio</a></span>
+                    <span class="company-desc">(Ear computer)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">GatlingX</a></span>
+                    <span class="company-desc">(AI hackbot)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">AeroVolt</a></span>
+                    <span class="company-desc">(Electric aviation infra.)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">Paddington</a></span>
+                    <span class="company-desc">(Embodied AI)</span>
+                </li>
+                <li>
+                    <span class="company"><a href="#">Stealth</a></span>
+                    <span class="company-desc">(Nuclear fusion)</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="interests" class="likes">
+            <p>I like:</p>
+            <ul>
+                <li>Sports with boards</li>
+                <li>Looking upstream</li>
+                <li>The Danish gambit</li>
+                <li>Deep frying</li>
+            </ul>
+        </section>
+
+        <section class="books">
+            <p>Book recommendations:</p>
+            <ul>
+                <li>Insomniac City</li>
+                <li>Humankind</li>
+                <li>A Fools Alphabet</li>
+            </ul>
+        </section>
+
+        <div class="contact">
+            Reach me at <a href="mailto:hm@harry-m.org">hm@harry-m.org</a>
+        </div>
+    </div>
+</body>
+</html>
