@@ -101,9 +101,10 @@
             font-family: 'Inter', sans-serif;
             font-size: clamp(60px, 12vw, 140px);
             font-weight: 900;
-            line-height: 0.9;
+            line-height: 1.1;
             letter-spacing: -0.04em;
             margin-bottom: 30px;
+            padding-bottom: 10px;
             background: linear-gradient(135deg, var(--neon-green), var(--cyber-blue), var(--hot-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -174,7 +175,8 @@
         nav {
             position: fixed;
             top: 40px;
-            right: 40px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 100;
             mix-blend-mode: difference;
         }
@@ -484,7 +486,7 @@
         <!-- Hero Section -->
         <div class="hero">
             <h1>Harry Morgan</h1>
-            <div class="typewriter">Builder → VC → Builder. Currently making robots at <a href="http://harry-m.org/" style="color: var(--neon-green); text-decoration: none;">Hanns</a>.</div>
+            <div class="typewriter">Builder → VC → Builder. Currently building robots at <a href="http://harry-m.org/" style="color: var(--neon-green); text-decoration: none;">Hanns</a>.</div>
         </div>
         
         <!-- Bio Section -->
